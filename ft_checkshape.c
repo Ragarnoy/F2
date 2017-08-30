@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 16:34:11 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/16 20:59:53 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/08/30 11:25:51 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,11 @@ int			ft_checkshape(char *str)
 			return (3);
 		i++;
 	}
-	if ((i = t_shape(str)))
+	if ((i = l_shape(str)) || (i = l_shape2(str)) || (i = s_shape(str))
+			|| (i = t_shape(str)))
+	{
+		free(str);
 		return (i);
-	if ((i = l_shape(str)))
-		return (i);
-	if ((i = l_shape2(str)))
-		return (i);
-	if ((i = s_shape(str)))
-		return (i);
+	}
 	return (0);
 }

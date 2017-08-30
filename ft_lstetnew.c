@@ -6,31 +6,29 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:29:54 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/21 17:12:54 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/08/30 11:20:42 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
-tet_list	*ft_lstetnew(char letter, char *content)
+t_tlist	*ft_lstetnew(char letter,int id)
 {
-	tet_list *elem;
+	t_tlist *elem;
 
-	if (!(elem = malloc(sizeof(tet_list))))
+	if (!(elem = malloc(sizeof(t_tlist))))
 		return (NULL);
-	if (!(elem->content = malloc(sizeof(elem->content) + 21)))
-		return (0);
-	if (!(content))
+	if (!(letter) || !(id))
 	{
-		elem->content = NULL;
+		elem->id = 0;
 		elem->letter = 0;
 	}
 	else
 	{
-		ft_memcpy(elem->content, content, 21);
+		elem->id = id;
 		elem->letter = letter;
 	}
-	elem->content[21] = '\0';
 	elem->next = NULL;
 	return (elem);
 }

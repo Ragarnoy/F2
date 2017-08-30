@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/14 13:17:29 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/30 11:57:06 by tlernoul         ###   ########.fr       */
+/*   Created: 2017/08/26 18:19:41 by tlernoul          #+#    #+#             */
+/*   Updated: 2017/08/30 12:44:15 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-int			main(int argc, char *argv[])
+char **ft_realloc(char **str,size_t size)
 {
-	char		*str;
-	int			i;
-	t_tlist	*elem;
+	char **tmp;
+	int x;
 
-	str = ft_strnew(22);
-	i = 0;
-	if (argc != 2)
+	x = 0;
+	if (!(tmp = (char**)malloc(sizeof(*tmp) * (size + 2))))
 		return (0);
-	if ((elem = ft_reader(ft_buffer(argv[1]))))
+	while (tmp[x])
 	{
-		while(elem->next)
-		{
-			printf("ID= %d, L= %c\n",elem->id, elem->letter);
-			elem = elem->next;
-		}
-		printf("ID= %d, L= %c\n",elem->id, elem->letter);
-		ft_putstr("yes\n");
-		return (1);
+		tmp[x] = ft_strnew(size + 2);
+		tmp[x] = ft_memset(tmp, '.', size + 2);
+		x++;
 	}
-	ft_putstr("no");
-	return (0);
+	ft_strdel(str);
+
+	return (tmp);
 }
