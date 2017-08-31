@@ -6,14 +6,14 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 16:34:11 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/30 11:25:51 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/08/31 02:31:30 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-static int	l_shape(char *str)
+static char	*l_shape(char *str)
 {
 	int i;
 
@@ -22,22 +22,22 @@ static int	l_shape(char *str)
 	{
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 5] == '#' &&
 				str[i + 10] == '#')
-			return (4);
+			return ("##\n#\n#");
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
 				str[i + 7] == '#')
-			return (5);
+			return ("###\n..#");
 		if (str[i] == '#' && str[i + 5] == '#' && str[i + 10] == '#' &&
 				str[i + 9] == '#')
-			return (6);
+			return (".#\n.#\n##");
 		if (str[i] == '#' && str[i + 5] == '#' && str[i + 6] == '#' &&
 				str[i + 7] == '#')
-			return (7);
+			return ("#\n###");
 		i++;
 	}
 	return (0);
 }
 
-static int	l_shape2(char *str)
+static char	*l_shape2(char *str)
 {
 	int i;
 
@@ -46,22 +46,22 @@ static int	l_shape2(char *str)
 	{
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 6] == '#' &&
 				str[i + 11] == '#')
-			return (8);
+			return ("##\n.#\n.#");
 		if (str[i] == '#' && str[i + 3] == '#' && str[i + 4] == '#' &&
 				str[i + 5] == '#')
-			return (9);
+			return ("..#\n###");
 		if (str[i] == '#' && str[i + 5] == '#' && str[i + 10] == '#' &&
 				str[i + 11] == '#')
-			return (10);
+			return ("#\n#\n##");
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
 				str[i + 5] == '#')
-			return (11);
+			return ("###\n#");
 		i++;
 	}
 	return (0);
 }
 
-static int	s_shape(char *str)
+static char	*s_shape(char *str)
 {
 	int i;
 
@@ -70,22 +70,22 @@ static int	s_shape(char *str)
 	{
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 6] == '#' &&
 				str[i + 7] == '#')
-			return (12);
+			return ("##\n.##");
 		if (str[i] == '#' && str[i + 4] == '#' && str[i + 5] == '#' &&
 				str[i + 9] == '#')
-			return (13);
+			return (".#\n##\n#");
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 4] == '#' &&
 				str[i + 5] == '#')
-			return (14);
+			return (".##\n##");
 		if (str[i] == '#' && str[i + 5] == '#' && str[i + 6] == '#' &&
 				str[i + 11] == '#')
-			return (15);
+			return ("#\n##\n.#");
 		i++;
 	}
 	return (0);
 }
 
-static int	t_shape(char *str)
+static char	*t_shape(char *str)
 {
 	int i;
 
@@ -94,44 +94,45 @@ static int	t_shape(char *str)
 	{
 		if (str[i] == '#' && str[i + 4] == '#' && str[i + 5] == '#' &&
 				str[i + 6] == '#')
-			return (16);
+			return (".#\n###");
 		if (str[i] == '#' && str[i + 5] == '#' && str[i + 6] == '#' &&
 				str[i + 10] == '#')
-			return (17);
+			return ("#\n##\n#");
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
 				str[i + 6] == '#')
-			return (18);
+			return ("###\n.#");
 		if (str[i] == '#' && str[i + 4] == '#' && str[i + 5] == '#' &&
 				str[i + 10] == '#')
-			return (19);
+			return (".#\n##\n.#");
 		i++;
 	}
 	return (0);
 }
 
-int			ft_checkshape(char *str)
+char		*ft_checkshape(char *str)
 {
-	int i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 5] == '#' &&
 				str[i + 6] == '#')
-			return (1);
+			return ("##\n##");
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
 				str[i + 3] == '#')
-			return (2);
+			return ("####");
 		if (str[i] == '#' && str[i + 5] == '#' && str[i + 10] == '#' &&
 				str[i + 15] == '#')
-			return (3);
+			return ("#\n#\n#\n#");
 		i++;
 	}
-	if ((i = l_shape(str)) || (i = l_shape2(str)) || (i = s_shape(str))
-			|| (i = t_shape(str)))
+	if ((tmp = l_shape(str)) || (tmp = l_shape2(str)) || (tmp = s_shape(str))
+			|| (tmp = t_shape(str)))
 	{
 		free(str);
-		return (i);
+		return (tmp);
 	}
 	return (0);
 }

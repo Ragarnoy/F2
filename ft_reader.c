@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:23:56 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/30 11:32:03 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/08/31 02:47:58 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int		fillit_square(char *str)
 static t_tlist	*fillit_chkshp(char *str)
 {
 	unsigned int	i;
-	int				res;
+	char			*tmp;
 	char			l;
 	t_tlist		*elem;
 	t_tlist		*begin;
@@ -69,21 +69,21 @@ static t_tlist	*fillit_chkshp(char *str)
 	l = 'A';
 	i = 0;
 	begin = NULL;
-	while (str[i] && (res = ft_checkshape(ft_strsub(str, i, 20))))
+	while (str[i] && (tmp = ft_checkshape(ft_strsub(str, i, 20))))
 	{
 		if (!begin)
 		{
-			elem = ft_lstetnew(l++, res);
+			elem = ft_lstetnew(l++, tmp);
 			begin = elem;
 		}
 		else
 		{
-			elem->next = ft_lstetnew(l++, res);
+			elem->next = ft_lstetnew(l++, tmp);
 			elem = elem->next;
 		}
 		i += 21;
 	}
-	return ((res) ? begin : NULL);
+	return ((tmp) ? begin : NULL);
 }
 
 t_tlist		*ft_reader(char *str)

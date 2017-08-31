@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:09:18 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/30 11:21:52 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/08/31 02:32:52 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,23 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-typedef struct		f_list
+typedef struct		s_tlist
 {
 	char			letter;
-	int				id;
-	struct f_list	*next;
+	char			*tetri;
+	struct s_tlist	*next;
 }					t_tlist;
 
-int					main(int argc,char *argv[]);
-t_tlist			*ft_reader(char *str);
-int					ft_checkshape(char *str);
-char				*ft_buffer(char *pth);
-t_tlist			*ft_lstetnew(char letter,int id);
+typedef struct		s_pos
+{
+	int				x;
+	int				y;
+}					t_pos;
+
+int					main(int argc, char *argv[]);
+char				*ft_checkshape(char *str);
+int					ft_shaper(char **str, int x, int y, int t);
+t_tlist				*ft_lstetnew(char letter, char *tetri);
+t_tlist				*ft_reader(char *str);
 
 #endif

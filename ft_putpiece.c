@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_buffer.c                                        :+:      :+:    :+:   */
+/*   ft_shaper.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/19 15:57:35 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/26 17:50:02 by tlernoul         ###   ########.fr       */
+/*   Created: 2017/08/26 19:00:44 by tlernoul          #+#    #+#             */
+/*   Updated: 2017/08/31 01:13:01 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*ft_buffer(char *pth)
+int		ft_putpiece(char **grid, t_pos *pos, char *str, int check)
 {
-	int fd;
-	int end;
-	char *buf;
-	char *tmp;
+	int		i;
+	int		x;
+	int		y;
 
-	if ((fd = open(pth, O_RDONLY)) == -1 || !(buf = ft_strnew(BUFFMAX_I)))
-		return (0);
-	while ((end = read(fd, buf, BUFFMAX_I)) > 0)
-		buf[end] = '\0';
-	if ((close(fd)) == -1)
-		return (0);
-	tmp = ft_strsub(buf, 0, ft_strlen(buf));
-	free(buf);
-	return (tmp);
+	i = 0;
+	y = pos->y;
+	x = pos->x;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+		{
+			y++;
+			x = pos->x;
+		}
+		else
+		{
+			if (grid[x][y] == '#' && str[i] == '#' && check)
+				return (0);
+			else if (str[i] == '#' && !check)
+				grid[x][y] = '#';
+			x++;
+		}
+		i++;
+	}
+	return (1);
 }

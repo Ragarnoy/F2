@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:32:28 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/30 13:09:31 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/08/31 02:57:49 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,35 +31,29 @@ static char	**firstalloc(char **str)
 	return (str);
 }
 
-static void	tryfit(char *str)
+static void	tryfit(t_pos pos)
 {
 	int x;
 
 	x = 0;
-	while (str[x])
+	while (str[])
 	{
 	}
 }
 
 int			ft_placetet(t_tlist tetlist)
 {
-	int		x;
-	int		y;
+	t_pos	*pos;
 	size_t	size;
 	char	**str;
 
 	size = 2;
-	x = 0;
-	y = 0;
+	ft_bzero(pos, sizeof(t_pos));
 	str = firstalloc(str);
-	while (str[x])
+	while (str[pos->x])
 	{
-		y = 0;
-		while (str[x][y])
-		{
-			y++;
-		}
-		x++;
+		pos->y = 0;
+		pos->x++;
 	}
 	return (1);
 }
