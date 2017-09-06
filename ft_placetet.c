@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:32:28 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/06 14:41:51 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/06 14:50:28 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	tryfit(t_pos pos, char **str, t_tlist *elem)
 {
 	while (str[++pos.x])
 	{
-		while (str[++pos.y] && ft_putpiece(str, &pos, &elem->letter, 1))
+		while (str[pos.x][++pos.y] && ft_putpiece(str, &pos, &elem->letter, 1))
 		{
 			if (ft_putpiece(str, &pos, elem->tetri, 1))
 			{
