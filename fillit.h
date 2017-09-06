@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:09:18 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/06 15:19:04 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/06 17:12:43 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct		s_pos
 
 int					main(int argc, char *argv[]);
 int					ft_shaper(char **str, int x, int y, int t);
-int					ft_putpiece(char **grid, t_pos *pos, char *str, int check);
+int					ft_putpiece(char grid[][12], t_pos *pos, char *str, int check);
 int					ft_placetet(t_tlist *tetlist);
 char				*ft_checkshape(char *str);
 char				**ft_realloc(char **str, size_t size);

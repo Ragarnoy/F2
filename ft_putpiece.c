@@ -6,13 +6,13 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 19:00:44 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/31 01:13:01 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/06 18:20:24 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_putpiece(char **grid, t_pos *pos, char *str, int check)
+int		ft_putpiece(char grid[][12], t_pos *pos, char *str, int check)
 {
 	int		i;
 	int		x;
@@ -25,8 +25,8 @@ int		ft_putpiece(char **grid, t_pos *pos, char *str, int check)
 	{
 		if (str[i] == '\n')
 		{
-			y++;
-			x = pos->x;
+			x++;
+			y = pos->y;
 		}
 		else
 		{
@@ -34,7 +34,7 @@ int		ft_putpiece(char **grid, t_pos *pos, char *str, int check)
 				return (0);
 			else if (str[i] == '#' && !check)
 				grid[x][y] = '#';
-			x++;
+			y++;
 		}
 		i++;
 	}
