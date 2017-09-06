@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:17:29 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/06 14:18:29 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/06 15:22:39 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ char	*ft_buffer(char *pth)
 
 int			main(int argc, char *argv[])
 {
-	char		*str;
 	int			i;
 	t_tlist		*elem;
 
-	str = ft_strnew(22);
 	i = 0;
 	if (argc != 2)
 		return (0);
