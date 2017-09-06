@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:32:28 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/06 18:26:35 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/06 18:33:52 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ static size_t	firstalloc(t_tlist *elem)
 	i = 0;
 	while (elem)
 		len++;
+	if (len == 1)
+		return (2);
+	if (len == 2)
+		return (3);
 	while (i * i < (len * 4))
 		i++;
 	return (i);
