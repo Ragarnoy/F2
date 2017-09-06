@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:17:29 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/31 02:51:26 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/05 16:03:41 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int			main(int argc, char *argv[])
 			elem = elem->next;
 		}
 		ft_putstr("yes\n");
+		while (1);
 		return (1);
 	}
 	ft_putstr("no");
