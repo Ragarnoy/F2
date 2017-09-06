@@ -6,14 +6,14 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:09:18 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/04 17:22:21 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/06 14:33:26 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_FILLIT_H
 # define FT_FILLIT_H
 # define BUFFMAX_O 157
-# define BUFFMAX_I 547
+# define BUFFMAX_I 145
 
 # include <string.h>
 # include <unistd.h>

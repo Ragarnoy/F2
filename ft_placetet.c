@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:32:28 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/04 17:23:36 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/06 14:41:51 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,22 @@ static int	tryfit(t_pos pos, char **str, t_tlist *elem)
 {
 	while (str[++pos.x])
 	{
-		while (str[++pos.y] && !ft_putpiece(str, &pos, &elem->letter, 1))
+		while (str[++pos.y] && ft_putpiece(str, &pos, &elem->letter, 1))
 		{
-			if ()
-				return (0);
+			if (ft_putpiece(str, &pos, elem->tetri, 1))
+			{
+				ft_putpiece(str, &pos, elem->tetri, 0);
+				elem = elem->next;
+			}
+			pos.y++;
 		}
 	}
+	return (1);
+}
+
+static void	recurfit(t_pos pos, t_tlist *elem)
+{
+
 }
 
 int			ft_placetet(t_tlist *tetlist)
