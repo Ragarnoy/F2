@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:09:18 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/07 16:18:42 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/07 16:58:21 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft/libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef struct		s_tlist
 {
@@ -36,7 +37,7 @@ typedef struct		s_pos
 
 int					main(int argc, char *argv[]);
 int					ft_shaper(char **str, int x, int y, int t);
-int					ft_putpiece(char grid[][12], t_pos *pos, t_tlist elem,
+int					ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem,
 																	int check);
 int					ft_placetet(t_tlist *tetlist);
 char				*ft_checkshape(char *str);

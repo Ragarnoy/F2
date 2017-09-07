@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:23:56 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/06 15:03:03 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/07 17:39:34 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ t_tlist		*ft_reader(char *str)
 			return (0);
 		i++;
 	}
-	printf("\n%d", i);
-	printf("\nsquare =%d\n", fillit_square(str));
+	printf("%d total characters", i);
 	if (fillit_square(str))
 		elem = fillit_chkshp(str);
 	if (elem)

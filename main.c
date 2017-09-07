@@ -6,12 +6,11 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:17:29 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/06 15:22:39 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/07 16:42:45 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 char	*ft_buffer(char *pth)
 {
@@ -41,12 +40,8 @@ int			main(int argc, char *argv[])
 		return (0);
 	if ((elem = ft_reader(ft_buffer(argv[1]))))
 	{
-		while(elem)
-		{
-			printf("\n%s\nLetter= %c\n",elem->tetri, elem->letter);
-			elem = elem->next;
-		}
-		ft_putstr("yes\n");
+		ft_placetet(elem);
+		ft_putstr("\nFinal yes\n");
 		return (1);
 	}
 	ft_putstr("no");

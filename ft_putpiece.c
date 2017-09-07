@@ -6,13 +6,13 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 19:00:44 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/07 16:20:54 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/07 16:58:12 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_putpiece(char grid[][12], t_pos *pos, t_tlist elem, int check)
+int		ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem, int check)
 {
 	int		i;
 	int		x;
