@@ -8,3 +8,5 @@ To-do
 -Ajouter les usage
 
 -Trouver optimisations
+
+-enlever stdio!!!!!!!!!!!!
