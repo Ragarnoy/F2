@@ -6,13 +6,13 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 19:00:44 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/06 18:26:49 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/07 16:20:54 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_putpiece(char grid[][12], t_pos *pos, char *str, int check)
+int		ft_putpiece(char grid[][12], t_pos *pos, t_tlist elem, int check)
 {
 	int		i;
 	int		x;
@@ -21,19 +21,19 @@ int		ft_putpiece(char grid[][12], t_pos *pos, char *str, int check)
 	i = 0;
 	y = pos->y;
 	x = pos->x;
-	while (str[i])
+	while (elem.tetri[i])
 	{
-		if (str[i] == '\n')
+		if (elem.tetri[i] == '\n')
 		{
 			x++;
 			y = pos->y;
 		}
 		else
 		{
-			if (grid[x][y] == '#' && str[i] == '#' && check)
+			if (grid[x][y] == '#' && elem.tetri[i] == '#' && check)
 				return (0);
-			else if (str[i] == '#' && !check)
-				grid[x][y] = '#';
+			else if (elem.tetri[i] == '#' && !check)
+				grid[x][y] = elem.letter;
 			y++;
 		}
 		i++;

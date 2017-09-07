@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:32:28 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/06 18:40:45 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/07 16:22:58 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,21 @@ static size_t	firstalloc(t_tlist *elem)
 
 static int	tryfit(t_pos pos, char str[][12], t_tlist *elem, size_t sizemax)
 {
-	while (str[++pos.x] && pos.x < sizemax)
+	pos.x = -1;
+	pos.y = -1;
+	while (++pos.x <= sizemax && elem)
 	{
-		while (str[pos.x][++pos.y] && ft_putpiece(str, &pos, &elem->letter, 1)
-				&& pos.y < sizemax)
+		while (++pos.y <= sizemax && elem)
 		{
-			if (ft_putpiece(str, &pos, elem->tetri, 1))
+			if (ft_putpiece(str, &pos, *elem, 1))
 			{
-				ft_putpiece(str, &pos, elem->tetri, 0);
-				elem = elem->next;
+				ft_putpiece(str, &pos, *elem, 0);
+				tryfit(pos, str, elem->next, sizemax);
 			}
 		}
+		if (pos.x == sizemax && pos.y == sizemax && elem)
+			sizemax++;
+		pos.y = -1;
 	}
 	return (1);
 }
@@ -56,8 +60,6 @@ int			ft_placetet(t_tlist *tetlist)
 	size_t	sizemax;
 	char	str[12][12];
 
-	pos.x = -1;
-	pos.y = -1;
 	ft_memset(&str, '.', 12);
 	ft_bzero(&pos, sizeof(t_pos));
 	sizemax = firstalloc(tetlist);
