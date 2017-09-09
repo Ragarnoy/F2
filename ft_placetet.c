@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:32:28 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/07 17:39:07 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/09 20:31:33 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	firstalloc(t_tlist *elem)
 		len++;
 	}
 	if (len == 1)
-		return (2);
+		return (3);
 	if (len == 2)
 		return (3);
 	while (i * i < (len * 4))
@@ -33,7 +33,23 @@ static int	firstalloc(t_tlist *elem)
 	return (i);
 }
 
-static void	debug(char dbug[][13], int s_max)
+/*static void	remove_t(char str[][13], char letter)
+{
+	int r;
+	int i;
+
+	i = -1;
+	r = 0;
+	while (r < 4)
+	{
+		if (*str[++i] == letter)
+			r++;
+		if (!*str[i] && (i = 0))
+			str++;
+	}
+}*/
+
+void	debug(char dbug[][13], int s_max)
 {
 	int i;
 	int j;
@@ -41,9 +57,9 @@ static void	debug(char dbug[][13], int s_max)
 	j = 0;
 	i = 0;
 	ft_putchar('\n');
-	while (i < s_max)
+	while (i <= s_max)
 	{
-		while (j < s_max)
+		while (j <= s_max)
 		{
 			printf("%c", dbug[i][j]);
 			j++;
@@ -55,44 +71,62 @@ static void	debug(char dbug[][13], int s_max)
 	ft_putchar('\n');
 }
 
-static int	tryfit(t_pos pos, char str[][13], t_tlist *elem, int sizemax)
+static int	tryfit(t_pos *pos, char str[][13], t_tlist *elem)
 {
-	pos.x = -1;
-	pos.y = -1;
+//	int ret;
 	if (!elem)
-		debug(str, sizemax);
-	printf("\nCoordinates are %d and %d and size is %d\nCurrent elem is\n%s\n",pos.x, pos.y, sizemax, elem->tetri);
-	while (++pos.x <= sizemax && elem)
 	{
-		while (++pos.y <= sizemax && elem)
-		{
-			if (ft_putpiece(str, &pos, *elem, 1))
-			{
-				ft_putpiece(str, &pos, *elem, 0);
-				tryfit(pos, str, elem->next, sizemax);
-			}
-		}
-		if (pos.x == sizemax && pos.y == sizemax && elem)
-			sizemax++;
-		pos.y = -1;
+		debug(str, pos->s);
+		exit(0);
 	}
+	while (pos->x <= pos->s && elem)
+	{
+		while (pos->y <= pos->s && elem)
+		{
+	printf("\nCoordinates are %d and %d and size is %d\nCurrent tetri is\n%s\n",pos->x, pos->y, pos->s, elem->tetri);
+	debug(str, pos->s);
+			if (pos->x >= pos->s)
+				return (1);
+			if (!ft_putpiece(str, pos, *elem, 1))
+				pos->y++;
+			else if (ft_putpiece(str, pos, *elem, 0))
+				tryfit(pos, str, elem->next);
+			tryfit(pos, str, elem);
+			pos->y++;
+			//if (ret)
+			//	return (1);
+			//remove_t(str, elem->letter);
+		}
+		if (pos->x == pos->s && pos->y == pos->s && elem)
+			pos->s++;
+		pos->y = 0;
+		pos->x++;
+	}
+	if (pos->x >= 9)
+		return (0);
 	return (1);
 }
 
 int			ft_placetet(t_tlist *tetlist)
 {
-	t_pos	pos;
-	int		sizemax;
+	t_pos	*pos;
 	char	str[13][13];
 
+	pos = (t_pos*)malloc(sizeof(t_pos));
+	pos->x = 0;
+	pos->y = 0;
+	pos->s = firstalloc(tetlist);
+	printf("size is %d\n", pos->s);
+	/*pos.s = 0;
+	while (tetlist)
+	{
+	printf("\nSize is %d\nCurrent elem is\n%s\n",pos.s, tetlist->tetri);
+	tetlist = tetlist->next;
+	}*/
 	ft_bzero(str, sizeof(str));
-	ft_memset(str, '.', sizeof(str) - 1);
-	ft_bzero(&pos, sizeof(t_pos));
-	sizemax = firstalloc(tetlist);
-	if (!tryfit(pos, str, tetlist, sizemax))
+	ft_memset(str, '.', sizeof(str));
+	if (!tryfit(pos, str, tetlist))
 		return (0);
-	printf("\n\nstr is %s\n", str[0]);
-	printf("size is %d\n", sizemax);
 	ft_putstr("yes");
 	return (1);
 }

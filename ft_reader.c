@@ -6,19 +6,18 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:23:56 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/07 17:39:34 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/09 20:02:31 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h> // Enleve cette merde
 
 static int		fillit_square(char *str)
 {
-	int m;
+	size_t m;
 
 	m = 0;
-	while (str[m])
+	while (m < ft_strlen(str))
 	{
 		if (!(str[4 + m] == '\n' && str[9 + m] == '\n' && str[14 + m] == '\n' &&
 					str[19 + m] == '\n'))
@@ -27,6 +26,7 @@ static int		fillit_square(char *str)
 	}
 	return (1);
 }
+
 
 static t_tlist	*fillit_chkshp(char *str)
 {
@@ -39,8 +39,10 @@ static t_tlist	*fillit_chkshp(char *str)
 	l = 'A';
 	i = 0;
 	begin = NULL;
-	while (str[i] && (tmp = ft_checkshape(ft_strsub(str, i, 20))))
+	while (i < ft_strlen(str) && (tmp = ft_checkshape(ft_strsub(str, i, 20))))
 	{
+		printf("%c\n", str[i]);
+	printf("\n====\n%s\n", tmp);
 		if (!begin)
 		{
 			elem = ft_lstetnew(l++, tmp);

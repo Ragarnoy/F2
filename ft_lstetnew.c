@@ -6,12 +6,11 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:29:54 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/08/31 02:51:32 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/09 19:27:30 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 t_tlist	*ft_lstetnew(char letter, char *tetri)
 {
@@ -19,7 +18,7 @@ t_tlist	*ft_lstetnew(char letter, char *tetri)
 
 	if (!(elem = malloc(sizeof(t_tlist))))
 		return (NULL);
-	if (!(elem->tetri = (char*)malloc(sizeof(char) * 8)))
+	if (!(elem->tetri = ft_strnew(7)))
 		return (NULL);
 	if (!(letter) || !(tetri))
 	{

@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:09:18 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/07 16:58:21 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/09 17:33:09 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_pos
 {
 	int				x;
 	int				y;
+	int				s;
 }					t_pos;
 
 int					main(int argc, char *argv[]);
