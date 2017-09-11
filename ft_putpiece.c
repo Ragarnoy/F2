@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 19:00:44 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/09 19:14:48 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/11 16:32:22 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem, int check)
 	i = 0;
 	y = pos->y;
 	x = pos->x;
-	printf("\ncoord = X=%d Y=%d -- current char is %c --chkmd=%d\n", x, y, elem.letter, check);
+	//printf("\ncoord = X=%d Y=%d -- current char is %c --chkmd=%d\n", x, y, elem.letter, check);
 	while (elem.tetri[i])
 	{
 		if (elem.tetri[i] == '\n')
@@ -38,7 +38,7 @@ int		ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem, int check)
 		}
 		else
 		{
-	printf("coord = X=%d Y=%d\n", x, y);
+	//printf("coord = X=%d Y=%d\n", x, y);
 			if (x > pos->s || y > pos->s)
 				return (0);
 			if (grid[x][y] != '.' && elem.tetri[i] != '.' && check)

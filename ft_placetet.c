@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:32:28 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/09 20:31:33 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/11 19:15:01 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ static int	tryfit(t_pos *pos, char str[][13], t_tlist *elem)
 		debug(str, pos->s);
 		exit(0);
 	}
+	if (pos->x == pos->s && pos->y == pos->s && elem)
+		pos->s++;
 	while (pos->x <= pos->s && elem)
 	{
 		while (pos->y <= pos->s && elem)
@@ -92,13 +94,11 @@ static int	tryfit(t_pos *pos, char str[][13], t_tlist *elem)
 			else if (ft_putpiece(str, pos, *elem, 0))
 				tryfit(pos, str, elem->next);
 			tryfit(pos, str, elem);
-			pos->y++;
+			//pos->y++;
 			//if (ret)
 			//	return (1);
 			//remove_t(str, elem->letter);
 		}
-		if (pos->x == pos->s && pos->y == pos->s && elem)
-			pos->s++;
 		pos->y = 0;
 		pos->x++;
 	}

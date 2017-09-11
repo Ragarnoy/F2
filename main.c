@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:17:29 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/09 19:50:43 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/11 19:16:17 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*ft_buffer(char *pth)
 
 	if ((fd = open(pth, O_RDONLY)) == -1 || !(buf = ft_strnew(BUFFMAX_I)))
 		return (0);
-	end = read(fd, buf, BUFFMAX_I);
+	if (!(end = read(fd, buf, BUFFMAX_I)))
+		return (0);
 	buf[end] = '\0';
 	if ((close(fd)) == -1)
 		return (0);
@@ -36,12 +37,13 @@ int			main(int argc, char *argv[])
 	t_tlist		*elem;
 	char *str;
 
-	str = ft_buffer(argv[1]);
 	i = 0;
 	if (argc != 2)
 		return (0);
+	str = ft_buffer(argv[1]);
 	if ((elem = ft_reader(str)))
 	{
+		free(str);
 		ft_placetet(elem);
 		ft_putstr("\nFinal yes\n");
 		return (1);

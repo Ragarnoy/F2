@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:23:56 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/09 20:02:31 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/11 19:12:12 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ static t_tlist	*fillit_chkshp(char *str)
 	l = 'A';
 	i = 0;
 	begin = NULL;
+	elem = NULL; //remove
+	tmp = NULL;
 	while (i < ft_strlen(str) && (tmp = ft_checkshape(ft_strsub(str, i, 20))))
 	{
-		printf("%c\n", str[i]);
-	printf("\n====\n%s\n", tmp);
 		if (!begin)
 		{
 			elem = ft_lstetnew(l++, tmp);
@@ -61,7 +61,7 @@ static t_tlist	*fillit_chkshp(char *str)
 t_tlist		*ft_reader(char *str)
 {
 	int			i;
-	t_tlist	*elem;
+	t_tlist		*elem;
 
 	elem = NULL;
 	i = 0;
@@ -70,8 +70,6 @@ t_tlist		*ft_reader(char *str)
 	while (str[i + 1])
 	{
 		if (str[i] != '#' && str[i] != '.' && str[i] != '\n')
-			return (0);
-		if (!(str[i + 2]) && str[i] == '\n')
 			return (0);
 		i++;
 	}

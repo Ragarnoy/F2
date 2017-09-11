@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:29:54 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/09 19:27:30 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/11 19:05:18 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_tlist	*ft_lstetnew(char letter, char *tetri)
 
 	if (!(elem = malloc(sizeof(t_tlist))))
 		return (NULL);
-	if (!(elem->tetri = ft_strnew(7)))
-		return (NULL);
+//	if (!(elem->tetri = ft_strnew(7)))
+//		return (NULL);
 	if (!(letter) || !(tetri))
 	{
 		elem->tetri = NULL;
