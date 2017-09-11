@@ -17,7 +17,7 @@ static int		fillit_square(char *str)
 	size_t m;
 
 	m = 0;
-	while (m < ft_strlen(str))
+	while (m < ft_strlen(str))		//mieux vaux stocker la taille pour optimiser
 	{
 		if (!(str[4 + m] == '\n' && str[9 + m] == '\n' && str[14 + m] == '\n' &&
 					str[19 + m] == '\n'))
@@ -39,10 +39,10 @@ static t_tlist	*fillit_chkshp(char *str)
 	l = 'A';
 	i = 0;
 	begin = NULL;
-	while (i < ft_strlen(str) && (tmp = ft_checkshape(ft_strsub(str, i, 20))))
+	while (i < ft_strlen(str) && (tmp = ft_checkshape(ft_strsub(str, i, 20))))	//pareille que en haut pour strlen
 	{
-		printf("%c\n", str[i]);
-	printf("\n====\n%s\n", tmp);
+		//printf("%c\n", str[i]);
+		printf("\n====\n%s\n", tmp);
 		if (!begin)
 		{
 			elem = ft_lstetnew(l++, tmp);
@@ -71,7 +71,7 @@ t_tlist		*ft_reader(char *str)
 	{
 		if (str[i] != '#' && str[i] != '.' && str[i] != '\n')
 			return (0);
-		if (!(str[i + 2]) && str[i] == '\n')
+		if (!(str[i + 2]) && str[i] == '\n')		//pas compris
 			return (0);
 		i++;
 	}

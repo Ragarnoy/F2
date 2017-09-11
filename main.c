@@ -36,7 +36,7 @@ int			main(int argc, char *argv[])
 	t_tlist		*elem;
 	char *str;
 
-	str = ft_buffer(argv[1]);
+	str = ft_buffer(argv[1]);			//pas proteger et a placer apres le test des arg
 	i = 0;
 	if (argc != 2)
 		return (0);
@@ -46,6 +46,6 @@ int			main(int argc, char *argv[])
 		ft_putstr("\nFinal yes\n");
 		return (1);
 	}
-	ft_putstr("no");
+	ft_putstr("no\n");
 	return (0);
 }

@@ -25,7 +25,7 @@ static int	firstalloc(t_tlist *elem)
 		len++;
 	}
 	if (len == 1)
-		return (3);
+		return (3);		//Euh pardon ? XD
 	if (len == 2)
 		return (3);
 	while (i * i < (len * 4))
@@ -33,7 +33,7 @@ static int	firstalloc(t_tlist *elem)
 	return (i);
 }
 
-/*static void	remove_t(char str[][13], char letter)
+static void	remove_t(char str[][13], char letter)
 {
 	int r;
 	int i;
@@ -47,18 +47,19 @@ static int	firstalloc(t_tlist *elem)
 		if (!*str[i] && (i = 0))
 			str++;
 	}
-}*/
+}
 
 void	debug(char dbug[][13], int s_max)
 {
 	int i;
 	int j;
 
-	j = 0;
+
 	i = 0;
 	ft_putchar('\n');
 	while (i <= s_max)
 	{
+			j = 0;
 		while (j <= s_max)
 		{
 			printf("%c", dbug[i][j]);
@@ -66,45 +67,98 @@ void	debug(char dbug[][13], int s_max)
 		}
 		printf("\n");
 		i++;
-		j = 0;
 	}
 	ft_putchar('\n');
 }
 
+t_pos	get_pos(char str[][13], char letter)
+{
+	int y;
+	int x;
+	t_pos p;
+
+	p.x = 0;
+	p.y = 0;
+	x = 0;
+	while (str[x])
+	{
+		y = 0;
+		while (str[x][y])
+		{
+			if (str[x][y] == letter)
+			{
+				p.x = x;
+				p.y = y;
+				return (p);
+			}
+			y++;
+		}
+	}
+	return (p);
+}
+
+/*
+	main_algo
+		->while pas fini, test from smallest to biggest
+	test_algo
+		->if no tetris left, return true
+		->while positions not tested, test this position
+			->if fit, then call test_algo for next tetriminos => catch true, return true
+			->if catched false, rm tetri from position, continue to test
+		->return false
+*/
+
+
+
 static int	tryfit(t_pos *pos, char str[][13], t_tlist *elem)
 {
-//	int ret;
-	if (!elem)
+	if (elem)
 	{
-		debug(str, pos->s);
-		exit(0);
-	}
-	while (pos->x <= pos->s && elem)
-	{
-		while (pos->y <= pos->s && elem)
+		sleep(1);
+		printf("Size = %d\ny = %d\nx = %d\n-------\n", pos->s, pos->y, pos->x);
+		if (ft_putpiece(str, pos, *elem, 1))
 		{
-	printf("\nCoordinates are %d and %d and size is %d\nCurrent tetri is\n%s\n",pos->x, pos->y, pos->s, elem->tetri);
-	debug(str, pos->s);
-			if (pos->x >= pos->s)
+			printf("\n------\nPLACE : %c\n-----\n", elem->letter);
+			ft_putpiece(str, pos, *elem, 0);
+			if (tryfit(pos, str, elem->next) == 1)
 				return (1);
-			if (!ft_putpiece(str, pos, *elem, 1))
-				pos->y++;
-			else if (ft_putpiece(str, pos, *elem, 0))
-				tryfit(pos, str, elem->next);
-			tryfit(pos, str, elem);
-			pos->y++;
-			//if (ret)
-			//	return (1);
-			//remove_t(str, elem->letter);
+			else
+			{
+				pos.y++;
+			}
 		}
-		if (pos->x == pos->s && pos->y == pos->s && elem)
-			pos->s++;
-		pos->y = 0;
-		pos->x++;
-	}
-	if (pos->x >= 9)
 		return (0);
-	return (1);
+	// 	else
+	// 		pos->y++;
+	// 	if (pos->y >= pos->s)
+	// 		{
+	// 			pos->x++;
+	// 			pos->y = 0;
+	// 		}
+	// 	if (pos->x >= pos->s)
+	// 	{
+	// 		printf("\n------\nREMOVE : %c\n-----\n", elem->letter - 1);
+	// 		*pos = get_pos(str, elem->letter - 1);
+	// 		remove_t(str, elem->letter - 1);
+	// 		pos->y++;
+	// 		return (0);
+	// 	}
+	// 	tryfit(pos, str, elem);
+	// }
+	// debug(str, pos->s);
+	// exit(0);
+}
+
+void		pritab(char tab[13][13])
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		ft_putendl(tab[i]);
+		i++;
+	}
 }
 
 int			ft_placetet(t_tlist *tetlist)
@@ -123,10 +177,10 @@ int			ft_placetet(t_tlist *tetlist)
 	printf("\nSize is %d\nCurrent elem is\n%s\n",pos.s, tetlist->tetri);
 	tetlist = tetlist->next;
 	}*/
-	ft_bzero(str, sizeof(str));
-	ft_memset(str, '.', sizeof(str));
-	if (!tryfit(pos, str, tetlist))
-		return (0);
-	ft_putstr("yes");
+	ft_bzero(str, sizeof(str));				//sizeof?
+	ft_memset(str, '.', sizeof(str));		//pourquoi bzero et memset?
+	tryfit(pos, str, tetlist);
+	printf("THIS IS FINISH\n");
+	debug(str, pos->s);
 	return (1);
 }

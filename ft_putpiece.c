@@ -28,7 +28,7 @@ int		ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem, int check)
 	i = 0;
 	y = pos->y;
 	x = pos->x;
-	printf("\ncoord = X=%d Y=%d -- current char is %c --chkmd=%d\n", x, y, elem.letter, check);
+	//printf("\ncoord = X=%d Y=%d -- current char is %c --chkmd=%d\n", x, y, elem.letter, check);
 	while (elem.tetri[i])
 	{
 		if (elem.tetri[i] == '\n')
@@ -38,12 +38,12 @@ int		ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem, int check)
 		}
 		else
 		{
-	printf("coord = X=%d Y=%d\n", x, y);
+	//printf("coord = X=%d Y=%d\n", x, y);
 			if (x > pos->s || y > pos->s)
 				return (0);
 			if (grid[x][y] != '.' && elem.tetri[i] != '.' && check)
 			{
-				ft_putchar('0');
+				//ft_putchar('0');
 				return (0);
 			}
 			else if (elem.tetri[i] != '.' && !check)
@@ -52,6 +52,6 @@ int		ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem, int check)
 		}
 		i++;
 	}
-	ft_putchar('1');
+	//ft_putchar('1');
 	return (1);
 }
