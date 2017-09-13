@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 19:00:44 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/11 16:32:22 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/13 16:48:28 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem, int check)
 				return (0);
 			if (grid[x][y] != '.' && elem.tetri[i] != '.' && check)
 			{
-				ft_putchar('0');
+				ft_putstr("^^^^^^^^^----Not fit");
 				return (0);
 			}
 			else if (elem.tetri[i] != '.' && !check)
