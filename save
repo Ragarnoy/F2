@@ -1,0 +1,117 @@
+static int	tryfit(t_pos *pos, char str[][13], t_tlist *elem)
+{
+//	int ret;
+	if (!elem)
+	{
+		debug(str, pos->s);
+		exit(0);
+	}
+	while (pos->x <= pos->s && elem)
+	{
+		while (pos->y <= pos->s && elem)
+		{
+	printf("\nCoordinates are %d and %d and size is %d\nCurrent tetri is\n%s\n",pos->x, pos->y, pos->s, elem->tetri);
+	debug(str, pos->s);
+			if (pos->x >= pos->s)
+				return (1);
+			if (pos->x == pos->s && pos->y == pos->s && elem)
+				{
+					printf("AWDAWDWA\n");
+					pos->s++;
+				}
+			if (!ft_putpiece(str, pos, *elem, 1))
+				pos->y++;
+			else if (ft_putpiece(str, pos, *elem, 0))
+				tryfit(pos, str, elem->next);
+			tryfit(pos, str, elem);
+			pos->y++;
+			//if (ret)
+			//	return (1);
+			//remove_t(str, elem->letter);
+		}
+		pos->y = 0;
+		pos->x++;
+	}
+	if (pos->x >= 9)
+		return (0);
+	return (1);
+}
+
+void	remove_t(char str[][13], char letter)
+{
+	int r;
+	int i;
+
+	i = -1;
+	r = 0;
+	while (r < 4)
+	{
+		if (*str[++i] == letter)
+			r++;
+		if (!*str[i] && (i = 0))
+			str++;
+	}
+}
+
+void	debug(char dbug[][13], int s_max)
+{
+	int i;
+	int j;
+
+
+	i = 0;
+	ft_putchar('\n');
+	while (i <= s_max)
+	{
+			j = 0;
+		while (j <= s_max)
+		{
+			printf("%c", dbug[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	ft_putchar('\n');
+}
+
+int		ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem, int check)
+{
+	int		i;
+	int		x;
+	int		y;
+
+	i = 0;
+	y = pos->y;
+	x = pos->x;
+	while (elem.tetri[i])
+	{
+		if (elem.tetri[i] == '\n')
+		{
+			x++;
+			y = pos->y;
+		}
+		else
+		{
+			if (x > pos->s || y > pos->s)
+				return (0);
+			if (grid[x][y] != '.' && elem.tetri[i] != '.' && check)
+				return (0);
+			else if (elem.tetri[i] != '.' && !check)
+				grid[x][y] = elem.letter;
+			y++;
+		}
+		i++;
+	}
+	return (1);
+}
+/*
+	main_algo
+		->while pas fini, test from smallest to biggest
+	test_algo
+		->if no tetris left, return true
+		->while positions not tested, test this position
+			->if fit, then call test_algo for next tetriminos => catch true, return true
+			->if catched false, rm tetri from position, continue to test
+		->return false
+*/

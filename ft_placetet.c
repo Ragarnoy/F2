@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-static int	firstalloc(t_tlist *elem)
+int	firstalloc(t_tlist *elem)
 {
 	int	i;
 	int	len;
@@ -33,20 +33,35 @@ static int	firstalloc(t_tlist *elem)
 	return (i);
 }
 
-static void	remove_t(char str[][13], char letter)
+void	remove_t(char str[][13], char letter, int size)
 {
 	int r;
 	int i;
+	t_pos p;
 
-	i = -1;
+	reset_pos(&p);
+	i = 0;
 	r = 0;
-	while (r < 4)
+	printf("\n-----------------------\nAVANT\n---------------------\n");
+	debug(str, size);
+	while (p.x < TABSIZE && r <= size)
 	{
-		if (*str[++i] == letter)
-			r++;
-		if (!*str[i] && (i = 0))
-			str++;
+		while (p.y < TABSIZE)
+		{
+			if (str[p.x][p.y] == letter)
+				{
+					str[p.x][p.y] = '.';
+					r++;
+				}
+			p.y++;
+		}
+		p.x++;
+		p.y = 0;
 	}
+
+	debug(str, size);
+	printf("\n-----------------------\nAPRES\n---------------------\n");
+
 }
 
 void	debug(char dbug[][13], int s_max)
@@ -57,10 +72,10 @@ void	debug(char dbug[][13], int s_max)
 
 	i = 0;
 	ft_putchar('\n');
-	while (i <= s_max)
+	while (i < s_max)
 	{
 			j = 0;
-		while (j <= s_max)
+		while (j < s_max)
 		{
 			printf("%c", dbug[i][j]);
 			j++;
@@ -97,89 +112,81 @@ t_pos	get_pos(char str[][13], char letter)
 	return (p);
 }
 
-/*
-	main_algo
-		->while pas fini, test from smallest to biggest
-	test_algo
-		->if no tetris left, return true
-		->while positions not tested, test this position
-			->if fit, then call test_algo for next tetriminos => catch true, return true
-			->if catched false, rm tetri from position, continue to test
-		->return false
-*/
+void		reset_pos(t_pos *pos)
+{
+	pos->x = 0;
+	pos->y = 0;
+}
 
-
-
-static int	tryfit(t_pos *pos, char str[][13], t_tlist *elem)
+int	tryfit(t_pos *pos, char str[][13], t_tlist *elem)
 {
 	if (elem)
 	{
-		sleep(1);
-		printf("Size = %d\ny = %d\nx = %d\n-------\n", pos->s, pos->y, pos->x);
-		if (ft_putpiece(str, pos, *elem, 1))
+		pos->x = 0;
+		pos->y = 0;
+		while(pos->x < pos->s)
 		{
-			printf("\n------\nPLACE : %c\n-----\n", elem->letter);
-			ft_putpiece(str, pos, *elem, 0);
-			if (tryfit(pos, str, elem->next) == 1)
-				return (1);
-			else
+			while (pos->y < pos->s)
 			{
-				pos.y++;
+				if (ft_check_n_put(str, pos, *elem))
+				{
+					if (tryfit(pos, str, elem->next) == FALSE)
+					{
+						remove_t(str, elem->letter, pos->s);
+						printf("jairm\n");
+							sleep(3);
+					}
+				}
+				pos->y++;
 			}
+			pos->y = 0;
+			pos->x++;
 		}
-		return (0);
-	// 	else
-	// 		pos->y++;
-	// 	if (pos->y >= pos->s)
-	// 		{
-	// 			pos->x++;
-	// 			pos->y = 0;
-	// 		}
-	// 	if (pos->x >= pos->s)
-	// 	{
-	// 		printf("\n------\nREMOVE : %c\n-----\n", elem->letter - 1);
-	// 		*pos = get_pos(str, elem->letter - 1);
-	// 		remove_t(str, elem->letter - 1);
-	// 		pos->y++;
-	// 		return (0);
-	// 	}
-	// 	tryfit(pos, str, elem);
-	// }
-	// debug(str, pos->s);
-	// exit(0);
+		printf("je sors avec :\nx = %i\ny = %i\n", pos->y, pos->x);
+		return (FALSE);
+	}
+	return (NOPE);
 }
 
-void		pritab(char tab[13][13])
+void	set_map(char str[][13])
 {
-	int i;
+	int y;
+	int x;
 
-	i = 0;
-	while (tab[i])
+	x = 0;
+	while (x < 13)
 	{
-		ft_putendl(tab[i]);
-		i++;
+		y = 0;
+		while (y < 13)
+		{
+			str[x][y] = '.';
+			y++;
+		}
+		x++;
 	}
 }
 
 int			ft_placetet(t_tlist *tetlist)
 {
 	t_pos	*pos;
-	char	str[13][13];
+	char	str[TABSIZE][TABSIZE];
+	int		ret;
 
 	pos = (t_pos*)malloc(sizeof(t_pos));
 	pos->x = 0;
 	pos->y = 0;
 	pos->s = firstalloc(tetlist);
 	printf("size is %d\n", pos->s);
-	/*pos.s = 0;
-	while (tetlist)
+	set_map(str);
+	debug(str, 13);
+	ret = TRUE;
+	while ((ret = tryfit(pos, str, tetlist)) != NOPE)
 	{
-	printf("\nSize is %d\nCurrent elem is\n%s\n",pos.s, tetlist->tetri);
-	tetlist = tetlist->next;
-	}*/
-	ft_bzero(str, sizeof(str));				//sizeof?
-	ft_memset(str, '.', sizeof(str));		//pourquoi bzero et memset?
-	tryfit(pos, str, tetlist);
+		printf("\n\nbouh\n");
+	//sleep(3);
+		if (ret == FALSE)
+			pos->s++;
+	}
 	printf("THIS IS FINISH\n");
 	debug(str, pos->s);
 	return (1);
