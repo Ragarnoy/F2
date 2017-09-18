@@ -18,6 +18,8 @@
 # define TRUE		42
 # define NOPE		69
 # define TABSIZE	13
+# define ERR		87
+# define USE		123
 
 # include <string.h>
 # include <unistd.h>
@@ -59,5 +61,6 @@ void				reset_pos(t_pos *pos);
 void				set_map(char str[][TABSIZE]);
 void				print_map(char dbug[][TABSIZE], t_pos *p);
 void				clafaim(char str[][TABSIZE], t_pos *p);
+void				print_use(int i);
 
 #endif

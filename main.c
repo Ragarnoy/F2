@@ -16,16 +16,24 @@ int			main(int argc, char *argv[])
 {
 	int			i;
 	t_tlist		*elem;
-	char		*str;
+	char *str;
 
-	if (argc != 2)
-		return (0);
-	str = ft_buffer(argv[1]);		//pas protger
 	i = 0;
+	if (argc != 2)
+	{
+		print_use(USE);
+		return (0);
+	}
+	if (!(str = ft_buffer(argv[1])))
+	{
+		print_use(ERR);
+		return (0);
+	}
 	if ((elem = ft_reader(str)))
 	{
+		free(str);
 		ft_placetet(elem);
-		return (1);
 	}
+	print_use(ERR);
 	return (0);
 }

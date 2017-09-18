@@ -75,10 +75,11 @@ int			ft_placetet(t_tlist *tetlist)
 	char	str[TABSIZE][TABSIZE];
 	int		ret;
 
-	pos = (t_pos*)malloc(sizeof(t_pos));
+	if (!(pos = (t_pos*)malloc(sizeof(t_pos))))
+		return (-1);
 	pos->x = 0;
 	pos->y = 0;
-	pos->s = firstalloc(tetlist);
+	pos->s = firstalloc(tetlist);			//a verifier/modifier
 	set_map(str);
 	ret = TRUE;
 	while ((ret = tryfit(pos, str, tetlist)) != NOPE)

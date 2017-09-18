@@ -12,6 +12,14 @@
 
 #include "fillit.h"
 
+void	print_use(int i)
+{
+	if (i == USE)
+		ft_putendl("usage : ./fillit file");
+	if (i == ERR)
+		ft_putendl("error");
+}
+
 void	print_map(char dbug[][TABSIZE], t_pos *p)
 {
 	int i;

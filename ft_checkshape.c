@@ -114,32 +114,25 @@ char		*ft_checkshape(char *str)
 	int		i;
 	char	*tmp;
 
-	static char c = 'A';
-
-
+	tmp = NULL;
 	i = 0;
-	printf("checkshape %c:\n--------\n%s\n-------\n", c, str);
-	c++;
-	while (str[i])
+	while (str[i] && !tmp)
 	{
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 5] == '#' &&
 				str[i + 6] == '#')
-			return ("##\n##");
-		if (str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
+			tmp = "##\n##";
+		else if (str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
 				str[i + 3] == '#')
-			return ("####");
-		if (str[i] == '#' && str[i + 5] == '#' && str[i + 10] == '#' &&
+			tmp = "####";
+		else if (str[i] == '#' && str[i + 5] == '#' && str[i + 10] == '#' &&
 				str[i + 15] == '#')
-			{printf("nique ta maman\n");
-			return ("#\n#\n#\n#");
-		}
+			tmp = "#\n#\n#\n#";
 		i++;
 	}
-	if ((tmp = l_shape(str)) || (tmp = l_shape2(str)) || (tmp = s_shape(str))
-			|| (tmp = t_shape(str)))
-	{
-		free(str);
-		return (tmp);
-	}
-	return (0);
+	tmp = (!tmp) ? l_shape(str) : tmp;
+	tmp = (!tmp) ? l_shape2(str) : tmp;
+	tmp = (!tmp) ? s_shape(str) : tmp;
+	tmp = (!tmp) ? t_shape(str) : tmp;
+	ft_memdel((void **)&str);
+	return (tmp);
 }
