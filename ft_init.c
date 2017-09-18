@@ -6,13 +6,13 @@
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 12:18:49 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/15 12:18:51 by ccatoire         ###   ########.fr       */
+/*   Updated: 2017/09/18 18:43:26 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_tlist	*ft_lstetnew(char letter, char *tetri)
+t_tlist		*ft_lstetnew(char letter, char *tetri)
 {
 	t_tlist	*elem;
 
@@ -32,13 +32,13 @@ t_tlist	*ft_lstetnew(char letter, char *tetri)
 	return (elem);
 }
 
-t_tlist	*fillit_chkshp(char *str)
+t_tlist		*fillit_chkshp(char *str)
 {
 	unsigned int	i;
 	char			*tmp;
 	char			l;
-	t_tlist		*elem;
-	t_tlist		*begin;
+	t_tlist			*elem;
+	t_tlist			*begin;
 
 	l = 'A';
 	i = 0;
@@ -60,7 +60,7 @@ t_tlist	*fillit_chkshp(char *str)
 	return ((tmp) ? begin : NULL);
 }
 
-int		fillit_square(char *str)
+int			fillit_square(char *str)
 {
 	size_t	m;
 	size_t	size;
@@ -79,8 +79,9 @@ int		fillit_square(char *str)
 
 t_tlist		*ft_reader(char *str)
 {
-	int			i;
+	int		i;
 	t_tlist	*elem;
+	int		count;
 
 	elem = NULL;
 	i = 0;
@@ -101,14 +102,16 @@ t_tlist		*ft_reader(char *str)
 	return (NULL);
 }
 
-char	*ft_buffer(char *pth)
+char		*ft_buffer(char *pth)
 {
 	int		fd;
 	int		end;
 	char	*buf;
 	char	*tmp;
 
-	if ((fd = open(pth, O_RDONLY)) == -1 || !(buf = ft_strnew(BUFFMAX_I)))
+	if ((fd = open(pth, O_RDONLY)) == -1)
+		return (0);
+	if (!(buf = ft_strnew(BUFFMAX_I)))
 		return (0);
 	end = read(fd, buf, BUFFMAX_I);
 	buf[end] = '\0';

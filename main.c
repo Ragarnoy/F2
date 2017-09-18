@@ -6,19 +6,17 @@
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 12:24:32 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/15 12:24:32 by ccatoire         ###   ########.fr       */
+/*   Updated: 2017/09/18 18:42:26 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			main(int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
-	int			i;
-	t_tlist		*elem;
-	char *str;
+	t_tlist	*elem;
+	char	*str;
 
-	i = 0;
 	if (argc != 2)
 	{
 		print_use(USE);

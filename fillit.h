@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:09:18 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/11 11:43:18 by ccatoire         ###   ########.fr       */
+/*   Updated: 2017/09/18 18:36:12 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@
 
 # include <string.h>
 # include <unistd.h>
-# include "libft/includes/libft.h"
+# include "libft/libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
-# include            <stdio.h>
 
 typedef struct		s_tlist
 {
@@ -60,7 +59,7 @@ void				remove_t(char str[][13], char letter, int size);
 void				reset_pos(t_pos *pos);
 void				set_map(char str[][TABSIZE]);
 void				print_map(char dbug[][TABSIZE], t_pos *p);
-void				clafaim(char str[][TABSIZE], t_pos *p);
+void				clafaim(char str[][TABSIZE], t_pos *p, t_tlist *elem);
 void				print_use(int i);
 
 #endif

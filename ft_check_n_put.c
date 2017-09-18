@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_n_put.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/18 18:20:32 by tlernoul          #+#    #+#             */
+/*   Updated: 2017/09/18 18:21:31 by tlernoul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 void	remove_t(char str[][TABSIZE], char letter, int size)
 {
-	int r;
-	int i;
-	t_pos p;
+	int		r;
+	int		i;
+	t_pos	p;
 
 	reset_pos(&p);
 	i = 0;
@@ -14,10 +26,10 @@ void	remove_t(char str[][TABSIZE], char letter, int size)
 		while (p.y < TABSIZE)
 		{
 			if (str[p.x][p.y] == letter)
-				{
-					str[p.x][p.y] = '.';
-					r++;
-				}
+			{
+				str[p.x][p.y] = '.';
+				r++;
+			}
 			p.y++;
 		}
 		p.x++;

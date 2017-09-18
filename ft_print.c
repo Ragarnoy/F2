@@ -6,7 +6,7 @@
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 12:18:57 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/15 12:18:57 by ccatoire         ###   ########.fr       */
+/*   Updated: 2017/09/18 18:27:36 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_map(char dbug[][TABSIZE], t_pos *p)
 	i = 0;
 	while (i < p->s)
 	{
-			j = 0;
+		j = 0;
 		while (j < p->s)
 		{
 			ft_putchar(dbug[i][j]);
@@ -39,8 +39,19 @@ void	print_map(char dbug[][TABSIZE], t_pos *p)
 	}
 }
 
-void	clafaim(char str[][TABSIZE], t_pos *p)
+void	clafaim(char str[][TABSIZE], t_pos *p, t_tlist *elem)
 {
+	t_tlist *next;
+
+	while (elem)
+	{
+		next = elem->next;
+		free(elem->tetri);
+		elem->tetri = NULL;
+		free(elem);
+		elem = NULL;
+		elem = next;
+	}
 	free(p);
 	print_map(str, p);
 	exit(0);

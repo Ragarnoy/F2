@@ -6,7 +6,7 @@
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 12:19:06 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/15 12:19:07 by ccatoire         ###   ########.fr       */
+/*   Updated: 2017/09/18 18:34:23 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_pos	get_pos(char str[][TABSIZE], char letter, int size)
 {
-	int y;
-	int x;
-	t_pos p;
+	int		y;
+	int		x;
+	t_pos	p;
 
 	p.x = 0;
 	p.y = 0;
@@ -40,13 +40,13 @@ t_pos	get_pos(char str[][TABSIZE], char letter, int size)
 	return (p);
 }
 
-int	tryfit(t_pos *pos, char str[][TABSIZE], t_tlist *elem)
+int		tryfit(t_pos *pos, char str[][TABSIZE], t_tlist *elem)
 {
 	if (elem)
 	{
 		pos->x = 0;
 		pos->y = 0;
-		while(pos->x < pos->s)
+		while (pos->x < pos->s)
 		{
 			while (pos->y < pos->s)
 			{
@@ -65,11 +65,11 @@ int	tryfit(t_pos *pos, char str[][TABSIZE], t_tlist *elem)
 		}
 		return (FALSE);
 	}
-	clafaim(str, pos);
+	clafaim(str, pos, elem);
 	return (NOPE);
 }
 
-int			ft_placetet(t_tlist *tetlist)
+int		ft_placetet(t_tlist *tetlist)
 {
 	t_pos	*pos;
 	char	str[TABSIZE][TABSIZE];
@@ -79,7 +79,7 @@ int			ft_placetet(t_tlist *tetlist)
 		return (-1);
 	pos->x = 0;
 	pos->y = 0;
-	pos->s = firstalloc(tetlist);			//a verifier/modifier
+	pos->s = firstalloc(tetlist);
 	set_map(str);
 	ret = TRUE;
 	while ((ret = tryfit(pos, str, tetlist)) != NOPE)
