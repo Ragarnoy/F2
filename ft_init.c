@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD:ft_init.c
 /*   Created: 2017/09/15 12:18:49 by ccatoire          #+#    #+#             */
 /*   Updated: 2017/09/18 18:43:26 by tlernoul         ###   ########.fr       */
+=======
+/*   Created: 2017/08/14 13:23:56 by tlernoul          #+#    #+#             */
+/*   Updated: 2017/09/11 19:12:12 by tlernoul         ###   ########.fr       */
+>>>>>>> master:ft_reader.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +48,8 @@ t_tlist		*fillit_chkshp(char *str)
 	l = 'A';
 	i = 0;
 	begin = NULL;
+	elem = NULL; //remove
+	tmp = NULL;
 	while (i < ft_strlen(str) && (tmp = ft_checkshape(ft_strsub(str, i, 20))))
 	{
 		if (!begin)
@@ -79,9 +86,14 @@ int			fillit_square(char *str)
 
 t_tlist		*ft_reader(char *str)
 {
+<<<<<<< HEAD:ft_init.c
 	int		i;
 	t_tlist	*elem;
 	int		count;
+=======
+	int			i;
+	t_tlist		*elem;
+>>>>>>> master:ft_reader.c
 
 	elem = NULL;
 	i = 0;
@@ -90,8 +102,6 @@ t_tlist		*ft_reader(char *str)
 	while (str[i + 1])
 	{
 		if (str[i] != '#' && str[i] != '.' && str[i] != '\n')
-			return (0);
-		if (!(str[i + 2]) && str[i] == '\n')
 			return (0);
 		i++;
 	}
