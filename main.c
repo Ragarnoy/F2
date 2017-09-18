@@ -3,22 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
+/*   Created: 2017/09/15 12:24:32 by ccatoire          #+#    #+#             */
+/*   Updated: 2017/09/18 18:42:26 by tlernoul         ###   ########.fr       */
+=======
 /*   Created: 2017/08/14 13:17:29 by tlernoul          #+#    #+#             */
 /*   Updated: 2017/09/11 19:16:17 by tlernoul         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*ft_buffer(char *pth)
+int		main(int argc, char *argv[])
 {
-	int fd;
-	int end;
-	char *buf;
-	char *tmp;
+	t_tlist	*elem;
+	char	*str;
 
+<<<<<<< HEAD
+=======
 	if ((fd = open(pth, O_RDONLY)) == -1 || !(buf = ft_strnew(BUFFMAX_I)))
 		return (0);
 	if (!(end = read(fd, buf, BUFFMAX_I)))
@@ -38,16 +43,26 @@ int			main(int argc, char *argv[])
 	char *str;
 
 	i = 0;
+>>>>>>> master
 	if (argc != 2)
+	{
+		print_use(USE);
 		return (0);
+<<<<<<< HEAD
+	}
+	if (!(str = ft_buffer(argv[1])))
+	{
+		print_use(ERR);
+		return (0);
+	}
+=======
 	str = ft_buffer(argv[1]);
+>>>>>>> master
 	if ((elem = ft_reader(str)))
 	{
 		free(str);
 		ft_placetet(elem);
-		ft_putstr("\nFinal yes\n");
-		return (1);
 	}
-	ft_putstr("no");
+	print_use(ERR);
 	return (0);
 }
