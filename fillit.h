@@ -6,7 +6,7 @@
 /*   By: tlernoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/14 13:09:18 by tlernoul          #+#    #+#             */
-/*   Updated: 2017/09/11 11:43:18 by ccatoire         ###   ########.fr       */
+/*   Updated: 2017/09/18 19:28:40 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # include <string.h>
 # include <unistd.h>
-# include "libft/includes/libft.h"
+# include "libft/libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
 

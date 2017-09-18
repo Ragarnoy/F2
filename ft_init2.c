@@ -6,7 +6,7 @@
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 12:26:41 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/15 12:26:43 by ccatoire         ###   ########.fr       */
+/*   Updated: 2017/09/18 19:27:42 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int		firstalloc(t_tlist *elem)
 		elem = elem->next;
 		len++;
 	}
-	if (len == 1 || len == 2)
+	if (len == 1)
+		return (2);
+	if (len == 2)
 		return (3);
 	while (i * i < (len * 4))
 		i++;
