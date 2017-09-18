@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/15 12:24:32 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/15 12:24:32 by ccatoire         ###   ########.fr       */
+/*   Created: 2017/09/15 12:18:57 by ccatoire          #+#    #+#             */
+/*   Updated: 2017/09/15 12:18:57 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			main(int argc, char *argv[])
+void	print_map(char dbug[][TABSIZE], t_pos *p)
 {
-	int			i;
-	t_tlist		*elem;
-	char		*str;
+	int i;
+	int j;
 
-	if (argc != 2)
-		return (0);
-	str = ft_buffer(argv[1]);		//pas protger
 	i = 0;
-	if ((elem = ft_reader(str)))
+	while (i < p->s)
 	{
-		ft_placetet(elem);
-		return (1);
+			j = 0;
+		while (j < p->s)
+		{
+			ft_putchar(dbug[i][j]);
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
 	}
-	return (0);
+}
+
+void	clafaim(char str[][TABSIZE], t_pos *p)
+{
+	free(p);
+	print_map(str, p);
+	exit(0);
 }

@@ -1,5 +1,30 @@
 #include "fillit.h"
 
+void	remove_t(char str[][TABSIZE], char letter, int size)
+{
+	int r;
+	int i;
+	t_pos p;
+
+	reset_pos(&p);
+	i = 0;
+	r = 0;
+	while (p.x < TABSIZE && r <= size)
+	{
+		while (p.y < TABSIZE)
+		{
+			if (str[p.x][p.y] == letter)
+				{
+					str[p.x][p.y] = '.';
+					r++;
+				}
+			p.y++;
+		}
+		p.x++;
+		p.y = 0;
+	}
+}
+
 int		ft_putpiece(char grid[][13], t_pos *pos, t_tlist elem)
 {
 	int		i;

@@ -114,7 +114,12 @@ char		*ft_checkshape(char *str)
 	int		i;
 	char	*tmp;
 
+	static char c = 'A';
+
+
 	i = 0;
+	printf("checkshape %c:\n--------\n%s\n-------\n", c, str);
+	c++;
 	while (str[i])
 	{
 		if (str[i] == '#' && str[i + 1] == '#' && str[i + 5] == '#' &&
@@ -125,7 +130,9 @@ char		*ft_checkshape(char *str)
 			return ("####");
 		if (str[i] == '#' && str[i + 5] == '#' && str[i + 10] == '#' &&
 				str[i + 15] == '#')
+			{printf("nique ta maman\n");
 			return ("#\n#\n#\n#");
+		}
 		i++;
 	}
 	if ((tmp = l_shape(str)) || (tmp = l_shape2(str)) || (tmp = s_shape(str))

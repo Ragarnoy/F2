@@ -1,31 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_init2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/15 12:24:32 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/15 12:24:32 by ccatoire         ###   ########.fr       */
+/*   Created: 2017/09/15 12:26:41 by ccatoire          #+#    #+#             */
+/*   Updated: 2017/09/15 12:26:43 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "fillit.h"
 
-int			main(int argc, char *argv[])
+int		firstalloc(t_tlist *elem)
 {
-	int			i;
-	t_tlist		*elem;
-	char		*str;
+	int	i;
+	int	len;
 
-	if (argc != 2)
-		return (0);
-	str = ft_buffer(argv[1]);		//pas protger
 	i = 0;
-	if ((elem = ft_reader(str)))
+	len = 0;
+	while (elem)
 	{
-		ft_placetet(elem);
-		return (1);
+		elem = elem->next;
+		len++;
 	}
-	return (0);
+	if (len == 1 || len == 2)
+		return (3);
+	while (i * i < (len * 4))
+		i++;
+	return (i);
+}
+
+void	set_map(char str[][TABSIZE])
+{
+	int y;
+	int x;
+
+	x = 0;
+	while (x < TABSIZE)
+	{
+		y = 0;
+		while (y < TABSIZE)
+		{
+			str[x][y] = '.';
+			y++;
+		}
+		x++;
+	}
+}
+
+void	reset_pos(t_pos *pos)
+{
+	pos->x = 0;
+	pos->y = 0;
 }
