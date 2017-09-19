@@ -6,7 +6,7 @@
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 12:19:06 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/15 12:19:07 by ccatoire         ###   ########.fr       */
+/*   Updated: 2017/09/19 15:36:02 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,51 +40,48 @@ t_pos	get_pos(char str[][TABSIZE], char letter, int size)
 	return (p);
 }
 
-int		tryfit(t_pos *pos, char str[][TABSIZE], t_tlist *elem)
+int		tryfit(t_pos pos, char str[][TABSIZE], t_tlist *elem)
 {
 	if (elem)
 	{
-		reset_pos(pos);
-		while (pos->x < pos->s)
+		reset_pos(&pos);
+		while (pos.x <= pos.s)
 		{
-			while (pos->y < pos->s)
+			while (pos.y <= pos.s)
 			{
-				if (ft_check_n_put(str, pos, *elem))
+				if (ft_check_n_put(str, &pos, *elem))
 				{
 					if (tryfit(pos, str, elem->next) == FALSE)
 					{
-						*pos = get_pos(str, elem->letter, pos->s);
-						remove_t(str, elem->letter, pos->s);
+						remove_t(str, elem->letter, pos.s);
 					}
 				}
-				pos->y++;
+				pos.y++;
 			}
-			pos->y = 0;
-			pos->x++;
+			pos.y = 0;
+			pos.x++;
 		}
 		return (FALSE);
 	}
-	clafaim(str, pos);
+	clafaim(str, &pos);
 	return (NOPE);
 }
 
 int		ft_placetet(t_tlist *tetlist)
 {
-	t_pos	*pos;
+	t_pos	pos;
 	char	str[TABSIZE][TABSIZE];
 	int		ret;
 
-	if (!(pos = (t_pos*)malloc(sizeof(t_pos))))
-		return (-1);
-	pos->x = 0;
-	pos->y = 0;
-	pos->s = firstalloc(tetlist);			//a verifier/modifier
+	pos.x = 0;
+	pos.y = 0;
+	pos.s = firstalloc(tetlist);
 	set_map(str);
 	ret = TRUE;
 	while ((ret = tryfit(pos, str, tetlist)) != NOPE)
 	{
 		if (ret == FALSE)
-			pos->s++;
+			pos.s++;
 	}
 	return (1);
 }

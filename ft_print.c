@@ -6,7 +6,7 @@
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 12:18:57 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/15 12:18:57 by ccatoire         ###   ########.fr       */
+/*   Updated: 2017/09/19 15:36:43 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	print_map(char dbug[][TABSIZE], t_pos *p)
 
 void	clafaim(char str[][TABSIZE], t_pos *p)
 {
-	free(p);
 	print_map(str, p);
 	exit(0);
 }

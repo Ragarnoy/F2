@@ -6,31 +6,35 @@
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/15 12:26:41 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/09/18 19:27:42 by tlernoul         ###   ########.fr       */
+/*   Updated: 2017/09/19 13:27:26 by tlernoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		check_sharp(char *str)
+int		check_sharp(char *str, char c)
 {
 	int	i;
 	int tet;
 
-	i = 0;
+	i = -1;
 	tet = 0;
-	while (str[i])
-	{
-		if (str[i] == '#')
+	while (str[++i])
+		if (str[i] == c)
 			tet++;
-		i++;
+	if (tet == 4)
+	{
+		if (c == '\n')
+			return (1);
+		check_sharp(str, '\n');
 	}
-	if (tet != 4)
+	else
 	{
 		print_use(ERR);
+		free(str);
 		exit(0);
 	}
-	return (1);
+	return (0);
 }
 
 int		firstalloc(t_tlist *elem)
