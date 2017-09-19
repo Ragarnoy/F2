@@ -20,17 +20,17 @@ static char	*shape1(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (i + 7 < 20 && str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
-				str[i + 7] == '#')
-			return ("###\n..#");
-		if (i + 7 < 20 && str[i] == '#' && str[i + 5] == '#' && str[i + 6] == '#' &&
-				str[i + 7] == '#')
+		if (i + 7 < 20 && str[i] == '#' && str[i + 5] == '#' &&
+			str[i + 6] == '#' && str[i + 7] == '#')
 			return ("#\n###");
-		if (i + 6 < 20 && str[i] == '#' && str[i + 4] == '#' && str[i + 5] == '#' &&
-				str[i + 6] == '#')
+		if (i + 7 < 20 && str[i] == '#' && str[i + 1] == '#' &&
+			str[i + 2] == '#' && str[i + 7] == '#')
+			return ("###\n..#");
+		if (i + 6 < 20 && str[i] == '#' && str[i + 4] == '#' &&
+			str[i + 5] == '#' && str[i + 6] == '#')
 			return (".#\n###");
-		if (i + 6 < 20 && str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
-				str[i + 6] == '#')
+		if (i + 6 < 20 && str[i] == '#' && str[i + 1] == '#' &&
+			str[i + 2] == '#' && str[i + 6] == '#')
 			return ("###\n.#");
 		i++;
 	}
@@ -44,17 +44,17 @@ static char	*shape2(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (i + 5 < 20 && str[i] == '#' && str[i + 3] == '#' && str[i + 4] == '#' &&
-				str[i + 5] == '#')
+		if (i + 5 < 20 && str[i] == '#' && str[i + 3] == '#' &&
+			str[i + 4] == '#' && str[i + 5] == '#')
 			return ("..#\n###");
-		if (i + 7 < 20 && str[i] == '#' && str[i + 1] == '#' && str[i + 6] == '#' &&
-				str[i + 7] == '#')
+		if (i + 7 < 20 && str[i] == '#' && str[i + 1] == '#' &&
+			str[i + 6] == '#' && str[i + 7] == '#')
 			return ("##\n.##");
-		if (i + 5 < 20 && str[i] == '#' && str[i + 1] == '#' && str[i + 4] == '#' &&
-				str[i + 5] == '#')
+		if (i + 5 < 20 && str[i] == '#' && str[i + 1] == '#' &&
+			str[i + 4] == '#' && str[i + 5] == '#')
 			return (".##\n##");
-		if (i + 5 < 20 && str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
-				str[i + 5] == '#')
+		if (i + 5 < 20 && str[i] == '#' && str[i + 1] == '#' &&
+			str[i + 2] == '#' && str[i + 5] == '#')
 			return ("###\n#");
 		i++;
 	}
@@ -68,17 +68,17 @@ static char	*shape3(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (i + 11 < 20 && str[i] == '#' && str[i + 5] == '#' && str[i + 10] == '#' &&
-				str[i + 11] == '#')
+		if (i + 11 < 20 && str[i] == '#' && str[i + 5] == '#' &&
+			str[i + 10] == '#' && str[i + 11] == '#')
 			return ("#\n#\n##");
-		if (i + 10 < 20 && str[i] == '#' && str[i + 1] == '#' && str[i + 5] == '#' &&
-				str[i + 10] == '#')
+		if (i + 10 < 20 && str[i] == '#' && str[i + 1] == '#' &&
+			str[i + 5] == '#' && str[i + 10] == '#')
 			return ("##\n#\n#");
-		if (i + 11 < 20 && str[i] == '#' && str[i + 1] == '#' && str[i + 6] == '#' &&
-				str[i + 11] == '#')
+		if (i + 11 < 20 && str[i] == '#' && str[i + 1] == '#' &&
+			str[i + 6] == '#' && str[i + 11] == '#')
 			return ("##\n.#\n.#");
-		if (i + 9 < 20 && str[i] == '#' && str[i + 4] == '#' && str[i + 5] == '#' &&
-				str[i + 9] == '#')
+		if (i + 9 < 20 && str[i] == '#' && str[i + 4] == '#' &&
+			str[i + 5] == '#' && str[i + 9] == '#')
 			return (".#\n##\n#");
 		i++;
 	}
@@ -92,20 +92,20 @@ static char	*shape4(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (i + 11 < 20 && str[i] == '#' && str[i + 5] == '#' && str[i + 6] == '#' &&
-				str[i + 11] == '#')
+		if (i + 11 < 20 && str[i] == '#' && str[i + 5] == '#' &&
+			str[i + 6] == '#' && str[i + 11] == '#')
 			return ("#\n##\n.#");
-		if (i + 10 < 20 && str[i] == '#' && str[i + 5] == '#' && str[i + 10] == '#' &&
-				str[i + 9] == '#')
+		if (i + 10 < 20 && str[i] == '#' && str[i + 5] == '#' &&
+			str[i + 10] == '#' && str[i + 9] == '#')
 			return (".#\n.#\n##");
-		if (i + 10 < 20 && str[i] == '#' && str[i + 4] == '#' && str[i + 5] == '#' &&
-				str[i + 10] == '#')
+		if (i + 10 < 20 && str[i] == '#' && str[i + 4] == '#' &&
+			str[i + 5] == '#' && str[i + 10] == '#')
 			return (".#\n##\n.#");
-		if (i + 10 < 20 && str[i] == '#' && str[i + 5] == '#' && str[i + 6] == '#' &&
-				str[i + 10] == '#')
+		if (i + 10 < 20 && str[i] == '#' && str[i + 5] == '#' &&
+			str[i + 6] == '#' && str[i + 10] == '#')
 			return ("#\n##\n#");
-		if (i + 15 < 20 && str[i] == '#' && str[i + 5] == '#' && str[i + 10] == '#' &&
-				str[i + 15] == '#')
+		if (i + 15 < 20 && str[i] == '#' && str[i + 5] == '#' &&
+			str[i + 10] == '#' && str[i + 15] == '#')
 			return ("#\n#\n#\n#");
 		i++;
 	}
@@ -122,11 +122,11 @@ char		*ft_checkshape(char *str)
 	check_sharp(str, '#');
 	while (str[i] && !tmp)
 	{
-		if (i + 6 < 20 && str[i] == '#' && str[i + 1] == '#' && str[i + 5] == '#' &&
-				str[i + 6] == '#')
+		if (i + 6 < 20 && str[i] == '#' && str[i + 1] == '#' &&
+			str[i + 5] == '#' && str[i + 6] == '#')
 			tmp = "##\n##";
-		else if (i + 3 < 20 && str[i] == '#' && str[i + 1] == '#' && str[i + 2] == '#' &&
-				str[i + 3] == '#')
+		else if (i + 3 < 20 && str[i] == '#' && str[i + 1] == '#' &&
+			str[i + 2] == '#' && str[i + 3] == '#')
 			tmp = "####";
 		i++;
 	}
