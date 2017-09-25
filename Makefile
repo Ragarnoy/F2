@@ -10,6 +10,7 @@ SRC		=	main.c					\
 
 WAY	=	
 
+LIB		=	libft
 
 LIBPATH	=	./libft/
 
@@ -25,15 +26,15 @@ RM		=	rm -rf
 
 all		:	$(NAME)
 
-$(NAME)		: $(OBJ)
-				$(MAKE) -C $(LIBPATH) libft.a
+$(NAME)		: $(OBJ) $(LIB)
+				$(MAKE) -C $(LIBPATH) all
 				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIB) -I $(HEADLIBPATH)
 
 lib			:	libft/libft.a
-			@(cd libft && $(MAKE))
+				$(MAKE) -C $(LIBPATH) all
 
 dellib		:
-			@(cd libft && $(MAKE) fclean)
+				$(MAKE) -C $(LIBPATH) fclean
 
 clean		:
 			$(RM) $(OBJ)
@@ -42,8 +43,8 @@ fclean		:	clean
 			$(RM) $(NAME)
 
 relib		:
-			@(cd libft && $(MAKE) re)
+			$(MAKE) -C $(LIBPATH) re
 
-re			:	fclean $(NAME)
+re			:	fclean dellib $(NAME)
 
-.PHONY		:	all re clean fclean
+.PHONY		:	all re clean fclean lib dellib all relib
